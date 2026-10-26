@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi" class="is-locked">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06070a">
+  <meta name="color-scheme" content="dark">
+  <title>Nguyễn Hữu Nhật Minh | 2k11 · Gia Lai</title>
+  <meta name="description" content="Nguyễn Hữu Nhật Minh, 2k11 ở Gia Lai. Học sinh, game thủ, cung cấp tool và hook MB uy tín cho anh em hot war.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nguyễn Hữu Nhật Minh | 2k11 · Gia Lai">
+  <meta property="og:description" content="Học cho ba mẹ vui, chơi cho mình vui, làm tool cho anh em vui.">
+  <meta property="og:image" content="./avatar.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306070a'/%3E%3Cpath d='M16 48V16l32 32V16' fill='none' stroke='%23ff2438' stroke-width='6' stroke-linejoin='round'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preload" as="image" href="./avatar.jpg">
+
+  <noscript>
+    <style>
+      #splash { display: none !important; }
+      html.is-locked, html.is-locked body { overflow: auto !important; }
+    </style>
+  </noscript>
+</head>
+<body class="is-locked">
+
+  <!-- Nền 3D (Three.js) -->
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Màn hình chờ -->
+  <div id="splash" role="dialog" aria-modal="true" aria-label="Màn hình chờ">
+    <p class="splash__status" aria-hidden="true">Đang chờ kết nối<span class="caret">_</span></p>
+
+    <div class="gyro" aria-hidden="true">
+      <span class="ring ring--a"></span>
+      <span class="ring ring--b"></span>
+      <span class="ring ring--c"></span>
+    </div>
+
+    <button id="enterBtn" class="enter" type="button">
+      <span class="enter__text">Chạm để kết nối với Nhật Minh</span>
+      <span class="enter__glow" aria-hidden="true"></span>
+    </button>
+
+    <p class="splash__hint"><i class="fa-solid fa-volume-high" aria-hidden="true"></i> Bật âm thanh để trải nghiệm trọn vẹn</p>
+  </div>
+
+  <main id="app">
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="container hero__grid">
+
+        <div class="hero__visual">
+          <div class="avatar-wrap">
+            <div class="avatar-float">
+              <div class="avatar-frame" data-tilt>
+                <span class="avatar-glow" aria-hidden="true"></span>
+                <div class="avatar-plate">
+                  <img src="./avatar.jpg" alt="Ảnh đại diện của Nguyễn Hữu Nhật Minh" width="800" height="600" fetchpriority="high" decoding="async" data-avatar>
+                </div>
+                <span class="bracket bracket--tl" aria-hidden="true"></span>
+                <span class="bracket bracket--tr" aria-hidden="true"></span>
+                <span class="bracket bracket--bl" aria-hidden="true"></span>
+                <span class="bracket bracket--br" aria-hidden="true"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__copy">
+          <h1 class="hero__name" aria-label="Nguyễn Hữu Nhật Minh">
+            <span class="line-mask" aria-hidden="true"><span class="line glitch" data-text="Nguyễn Hữu">Nguyễn Hữu</span></span>
+            <span class="line-mask" aria-hidden="true"><span class="line glitch" data-text="Nhật Minh">Nhật Minh</span></span>
+          </h1>
+
+          <p class="hero__tagline">Học cho ba mẹ vui, chơi cho mình vui, làm tool cho anh em vui.</p>
+
+          <ul class="tags" aria-label="Thông tin nhanh">
+            <li class="tag-item"><span class="tag"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i>2k11</span></li>
+            <li class="tag-item"><span class="tag"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>Gia Lai</span></li>
+            <li class="tag-item"><span class="tag"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Student</span></li>
+            <li class="tag-item"><span class="tag tag--hot"><i class="fa-solid fa-bolt" aria-hidden="true"></i>Tool &amp; Hook MB</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#about" aria-label="Cuộn xuống phần giới thiệu">
+        <span class="scroll-cue__text">Cuộn xuống</span>
+        <span class="scroll-cue__line" aria-hidden="true"></span>
+      </a>
+    </section>
+
+    <!-- Giới thiệu -->
+    <section class="section about" id="about">
+      <div class="container about__grid">
+        <div class="about__main">
+          <h2 class="sec-title">Mình là ai?</h2>
+          <p class="about__lead">Chào, mình là Nhật Minh, sinh năm 2011, đang sống ở Gia Lai. Ban ngày mình là học sinh, bài vở khá nhiều nhưng mình luôn tìm được nhịp để vừa học vừa chơi. Hết giờ học là lúc mình bật game, mày mò tool và hỗ trợ anh em trong cộng đồng. Mình thích vui vẻ, nói chuyện dễ, ai nhắn cũng rep. Đã nhận việc gì thì làm tới nơi tới chốn, đã bán là bán uy tín.</p>
+        </div>
+
+        <aside class="about__panel glass" aria-label="Tính cách">
+          <h3 class="panel__title">Tính cách</h3>
+          <ul class="traits">
+            <li><i class="fa-solid fa-face-laugh-beam" aria-hidden="true"></i>Vui vẻ</li>
+            <li><i class="fa-solid fa-user-group" aria-hidden="true"></i>Hòa đồng</li>
+            <li><i class="fa-solid fa-person-running" aria-hidden="true"></i>Năng động</li>
+            <li><i class="fa-solid fa-fire" aria-hidden="true"></i>Nhiệt tình</li>
+          </ul>
+          <blockquote class="panel__quote">Học ra học, chơi ra chơi, làm ra làm.</blockquote>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Công việc & dịch vụ -->
+    <section class="section work" id="work">
+      <div class="container">
+        <h2 class="sec-title">Mình đang làm gì?</h2>
+        <p class="sec-sub">Ba thứ chiếm hết thời gian của mình. Rê chuột hoặc chạm vào thẻ để nghiêng thử.</p>
+
+        <div class="cards">
+          <div class="card-wrap">
+            <article class="card" data-tilt>
+              <span class="card__icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+              <h3 class="card__title">Học tập &amp; chơi game</h3>
+              <p class="card__text">Học là việc chính, bài vở không bỏ bê. Xong việc thì vào game xả stress, chơi cho vui chứ không chơi cho căng.</p>
+              <ul class="chips"><li>Học nghiêm túc</li><li>Game giải trí</li></ul>
+            </article>
+          </div>
+
+          <div class="card-wrap">
+            <article class="card" data-tilt>
+              <span class="card__icon" aria-hidden="true"><i class="fa-solid fa-toolbox"></i></span>
+              <h3 class="card__title">Cung cấp tool</h3>
+              <p class="card__text">Mình tìm, thử và chia sẻ các loại tool cho anh em đam mê công nghệ. Cần gì cứ nhắn, có là gửi.</p>
+              <ul class="chips"><li>Nhiều loại tool</li><li>Có hỗ trợ</li></ul>
+            </article>
+          </div>
+
+          <div class="card-wrap">
+            <article class="card card--hot" data-tilt>
+              <span class="card__icon" aria-hidden="true"><i class="fa-solid fa-bolt"></i></span>
+              <h3 class="card__title">Hook MB cho hot war</h3>
+              <p class="card__text">Làm và bán hook MB uy tín phục vụ anh em hot war. Hỗ trợ tận tình, nhắn là có người trả lời.</p>
+              <ul class="chips"><li>Uy tín</li><li>Hỗ trợ anh em</li></ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Liên hệ -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <h2 class="sec-title">Tìm mình ở đâu?</h2>
+        <p class="sec-sub">Nhắn riêng hoặc vào server cho vui. Mình online là rep.</p>
+
+        <div class="links">
+          <div class="btn-wrap">
+            <a class="btn3d" href="https://www.facebook.com/profile.php?id=61594074891915" target="_blank" rel="noopener noreferrer" data-tilt>
+              <span class="btn3d__face">
+                <span class="btn3d__icon" aria-hidden="true"><i class="fa-brands fa-facebook-f"></i></span>
+                <span class="btn3d__label">
+                  <strong>Facebook cá nhân</strong>
+                  <small>Nhắn trực tiếp cho Minh</small>
+                </span>
+              </span>
+            </a>
+          </div>
+
+          <div class="btn-wrap">
+            <a class="btn3d" href="https://discord.gg/dbinrobloxvn" target="_blank" rel="noopener noreferrer" data-tilt>
+              <span class="btn3d__face">
+                <span class="btn3d__icon" aria-hidden="true"><i class="fa-brands fa-discord"></i></span>
+                <span class="btn3d__label">
+                  <strong>Tham gia Discord</strong>
+                  <small>Vào server cùng anh em</small>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>&copy; 2026 Nguyễn Hữu Nhật Minh. Gia Lai, Việt Nam.</p>
+    </footer>
+  </main>
+
+  <!-- Trình phát nhạc -->
+  <div class="player" id="player">
+    <button class="player__btn" id="playerBtn" type="button" aria-label="Tắt nhạc nền" aria-pressed="true">
+      <span class="player__disc"><img src="./avatar.jpg" alt="" width="44" height="44" data-avatar></span>
+      <canvas id="bars" class="player__bars" width="64" height="28" aria-hidden="true"></canvas>
+    </button>
+  </div>
+  <audio id="bgm" src="./music.mp3" loop preload="auto" playsinline></audio>
+
+  <!-- Thư viện (CDN) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Code của trang -->
+  <script src="./scene3d.js"></script>
+  <script src="./main.js"></script>
+</body>
+</html>
